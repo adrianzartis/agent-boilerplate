@@ -1,0 +1,4 @@
+Summarize the following text in a concise paragraph. Respond with JSON using a
+`summary` field.
+
+{{text}}
