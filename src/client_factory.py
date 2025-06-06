@@ -9,7 +9,7 @@ def get_agent_model_name(key: str) -> str :
     config_key_prefix = f'llm.agents.{key}'
     model_name = config.get(f'{config_key_prefix}.model_name')
 
-    if model_name == None:
+    if model_name is None:
         config_key_prefix = 'llm'
         # fallback to defaults
         model_name = config.get(f'{config_key_prefix}.model_name')
@@ -19,7 +19,7 @@ def get_agent_open_ai_client(key: str, timeout: float = None) -> AsyncOpenAI :
     config_key_prefix = f'llm.agents.{key}'
     base_url = config.get(f'{config_key_prefix}.base_url')
 
-    if base_url == None:
+    if base_url is None:
         config_key_prefix = 'llm'
         # fallback to defaults
         base_url = config.get(f'{config_key_prefix}.base_url')
@@ -29,7 +29,7 @@ def get_agent_open_ai_client(key: str, timeout: float = None) -> AsyncOpenAI :
     api_version = config.get(f'{config_key_prefix}.api_version')
     
 
-    if api_version == None:
+    if api_version is None:
         return AsyncOpenAI(
             base_url=base_url,
             api_key=api_key,
