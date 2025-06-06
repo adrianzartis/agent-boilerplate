@@ -1,0 +1,16 @@
+[project]
+name = "agent"
+version = "0.1.0"
+description = "Agent boilerplate"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "Proprietary" }
+authors = [
+    { name = "Zartis", email = "adrian.sanchez@zartis.com" },
+]
+dependencies = [
+    "openai-agents==0.0.17",
+    "pydantic>=2.11.3",
+    "python-dotenv>=1.1.0",
+    "pyyaml>=6.0.2",
+]

@@ -1,0 +1,70 @@
+llm:
+  base_url: https://kairos-dev-resource.services.ai.azure.com #https://kairos-dev-resource.services.ai.azure.com #"https://personal-open-ai.openai.azure.com/" #"https://api.scaleway.ai/v1"
+  model_name: "gpt-4.1-mini" #gpt-4.1 gpt-4.1-mini #gpt-4.1-nano #grok-3-mini #grok-3
+  api_version: "2024-12-01-preview" #"2024-12-01-preview" #2024-05-01-preview # IMPORTANT, remove if not using Azure
+  agents:
+    supervisor:
+      model_name: gpt-4.1-nano #deepseek-r1-distill-llama-70b #gemma-3-27b-it #llama-3.3-70b-instruct #mistral-nemo-instruct-2407
+      base_url: https://kairos-dev-resource.services.ai.azure.com #"https://api.scaleway.ai/v1"
+      api_version: "2024-12-01-preview" #IMPORTANT add only if using Azure AI
+    accounting_specialist:
+      model_name: hf.co/bartowski/SUFE-AIFLM-Lab_Fin-R1-GGUF:Q8_0 # gemma-3-27b-it # hf.co/bartowski/SUFE-AIFLM-Lab_Fin-R1-GGUF:Q8_0 #'deepseek-r1-distill-llama-70b'
+      base_url: "https://operations-apim.azure-api.net/ollama-internal-openai-api/v1" #https://operations-apim.azure-api.net/ollama-internal-openai-api/v1 #"https://api.scaleway.ai/v1"
+      # api_version: "2024-12-01-preview" #IMPORTANT add only if using Azure AI
+    law_specialist:
+      model_name: deepseek-r1-distill-llama-70b # gemma-3-27b-it # hf.co/bartowski/SUFE-AIFLM-Lab_Fin-R1-GGUF:Q8_0 #'deepseek-r1-distill-llama-70b'
+      base_url: "https://api.scaleway.ai/v1" #https://operations-apim.azure-api.net/ollama-internal-openai-api/v1 #"https://api.scaleway.ai/v1"
+      # api_version: "2024-12-01-preview" #IMPORTANT add only if using Azure AI
+    operations_specialist:
+      model_name: deepseek-r1-distill-llama-70b # gemma-3-27b-it # hf.co/bartowski/SUFE-AIFLM-Lab_Fin-R1-GGUF:Q8_0 #'deepseek-r1-distill-llama-70b'
+      base_url: "https://api.scaleway.ai/v1" #https://operations-apim.azure-api.net/ollama-internal-openai-api/v1 #"https://api.scaleway.ai/v1"
+      # api_version: "2024-12-01-preview" #IMPORTANT add only if using Azure AI
+      # general_purpose:
+      #   model_name: 'llama-3.3-70b-instruct'
+      #   base_url: "https://api.scaleway.ai/v1"
+      #   # api_version: "2024-12-01-preview" #IMPORTANT add only if using Azure AI
+      critique:
+        model_name: deepseek-r1-distill-llama-70b # gpt-4.1 #'deepseek-r1-distill-llama-70b'
+        base_url: https://api.scaleway.ai/v1 #https://kairos-dev-resource.services.ai.azure.com #"https://api.scaleway.ai/v1"
+        #api_version: "2024-12-01-preview" #IMPORTANT add only if using Azure AI
+
+retriever:
+  top_k: 10
+  search_mode: "global"
+  search_url: "http://localhost:9621/query"
+
+prompts:
+  analyzer:
+    router: "prompts/analyzer/router.txt"
+    formulator: "prompts/analyzer/formulator.txt"
+    formulator_critique: "prompts/analyzer/formulator_critique.txt"
+    formulator_synthesis: "prompts/analyzer/formulator_synthesis.txt"
+    answer_synthesis: "prompts/analyzer/answer_synthesis.txt"
+    variable_value_classifier: "prompts/analyzer/variable_value_classifier.txt"
+    value_extractor: "prompts/analyzer/value_extractor.txt"
+    string_normalizer: "prompts/analyzer/string_normalizer.txt"
+    nuextract: "prompts/analyzer/nuextract.txt"
+    formula_critic: "prompts/analyzer/formula_critic.txt"
+    dispatcher: "prompts/analyzer/dispatcher.txt"
+    query_transformer: "prompts/analyzer/query_transformer.txt"
+  brainstoriming:
+    legal_summary: "prompts/brainstorming/legal_summary.txt"
+    operations_summary: "prompts/brainstorming/operations_summary.txt"
+    financials_summary: "prompts/brainstorming/financials_summary.txt"
+  criteria:
+    judge: "prompts/criteria/judge.txt"
+    no_agent: "prompts/criteria/no_agent.txt"
+    unclear: "prompts/criteria/unclear.txt"
+    contradictory: "prompts/criteria/contradictory.txt"
+    yes_agent: "prompts/criteria/yes_agent.txt"
+    likely: "prompts/criteria/likely.txt"
+    criteria_extraction: "prompts/criteria/criteria_extraction.txt"
+    query: "prompts/criteria/query.txt"
+    summary_report: "prompts/criteria/summary_report.txt"
+
+output:
+  output_dir: "output"
+
+logging:
+  level: "INFO"
+  file_path: "logs/agent_run.log"
