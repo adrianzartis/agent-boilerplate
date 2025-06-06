@@ -1,0 +1,5 @@
+Based on the following summary, craft one follow-up question and label it with
+its type as either "open-ended" or "yes/no". Respond using JSON with the
+fields `question` and `kind`.
+
+{{summary}}

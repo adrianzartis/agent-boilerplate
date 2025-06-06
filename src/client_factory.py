@@ -20,8 +20,11 @@ def get_agent_open_ai_client(key: str, timeout: float = None) -> AsyncOpenAI :
         # fallback to defaults
         base_url = config.get(f'{config_key_prefix}.base_url')
     
-    key = f'{config_key_prefix.upper().replace('.', '_')}_API_KEY'
+    key = f"{config_key_prefix.upper().replace('.', '_')}_API_KEY"
     api_key = config.get_api_key(key)
+    if not api_key:
+        # fall back to a single LLM_API_KEY environment variable
+        api_key = config.get_api_key("LLM_API_KEY")
     api_version = config.get(f'{config_key_prefix}.api_version')
     
 
