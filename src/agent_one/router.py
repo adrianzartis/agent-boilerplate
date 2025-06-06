@@ -1,7 +1,7 @@
 """FastAPI router exposing endpoints for the example agents."""
 
 from fastapi import APIRouter
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from .runner import run, MultiAgentOutput
 
@@ -11,7 +11,11 @@ router = APIRouter(prefix="/agent-one", tags=["agent_one"])
 class InputRequest(BaseModel):
     """Payload accepted by the multi-agent runner."""
 
-    text: str
+    text: str = Field(
+        ...,
+        description="Text to summarise and analyse",
+        examples=["FastAPI makes it easy to build APIs."],
+    )
 
 
 @router.post("/run", response_model=MultiAgentOutput)
