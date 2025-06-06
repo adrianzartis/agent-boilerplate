@@ -32,8 +32,15 @@ Pydantic models describing the LLM responses live in `src/schemas.py`. The
 `FollowupOutput` model shows how to use `Literal` to constrain values returned
 by the language model. FastAPI routers for each agent are defined in their
 respective `router.py` modules and are collected by `src/agent.py`. The
-application entry point in `src/main.py` simply mounts these routers and adds
+application entry point in `src/main.py` simply mounts these routers, configures
+basic logging, and adds
 some basic middleware.
+
+## Logging
+
+Running the server creates an `app.log` file in the project root. The file is
+overwritten on each start and contains debug information including the prompts
+sent to the LLMs and their structured responses.
 
 ## Extending
 
