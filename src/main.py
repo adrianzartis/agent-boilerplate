@@ -4,6 +4,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 
+from logging_config import setup_logging
+
+# configure logging before creating the FastAPI application
+setup_logging()
+
 from agent import register_endpoints
 
 app = FastAPI(
