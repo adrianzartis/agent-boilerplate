@@ -1,5 +1,9 @@
 from openai import AsyncOpenAI, AsyncAzureOpenAI
 from config import config
+from dotenv import load_dotenv, find_dotenv
+import os
+
+load_dotenv(find_dotenv())
 
 def get_agent_model_name(key: str) -> str :
     config_key_prefix = f'llm.agents.{key}'

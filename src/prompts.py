@@ -1,4 +1,3 @@
-from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, MessagesPlaceholder
 from config import config
 import logging
 from pathlib import Path
@@ -50,30 +49,6 @@ def load_prompt(prompt_key: str) -> Optional[str]:
     except Exception as e:
         # Permission errors
         logger.exception(f"Error reading prompt file {full_path} for key '{prompt_key}': {e}")
-        return None
-
-
-def create_react_prompt_template() -> Optional[ChatPromptTemplate]:
-    """
-    Creates the ChatPromptTemplate for the ReAct Supervisor Agent.
-    Loads the system prompt using the 'react_supervisor' key from config.
-    """
-    logger.debug("Attempting to create ReAct prompt template...")
-    system_prompt_content = load_prompt('react_supervisor')
-    if system_prompt_content is None:
-        logger.error("Failed to load system prompt content using key 'react_supervisor'. Cannot create template.")
-        return None
-
-    try:
-        system_message = SystemMessagePromptTemplate.from_template(system_prompt_content)
-        prompt = ChatPromptTemplate.from_messages([
-                system_message,
-                MessagesPlaceholder(variable_name="messages"),
-            ])
-        logger.info("ReAct prompt template created successfully using key 'react_supervisor'.")
-        return prompt
-    except Exception as e:
-        logger.exception(f"Failed to create ChatPromptTemplate from loaded content: {e}")
         return None
 
 
